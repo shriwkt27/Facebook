@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">  
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+</head>
+<body>
+<div class="container" ng-controller="AppCtrl">
+
+<div id="wrapper">
+  <div id="header">
+	<nav class="navbar navbar-default">
+   		<div class="container-fluid">
+    		<div class="navbar-header">
+      			<a class="navbar-brand" href="#"><h2>Facebook</h2></a>
+    		</div>
+    		<div>
+      			<ul class="nav navbar-nav">
+        			<li><a href="/about"><%= firstName %></a></li>
+        			<li class="active"><a href="/landingPage">home</a></li>
+        			<li><a href="/logout">Logout</a></li>
+      			</ul>
+    		</div>
+  		</div>
+	</nav>
+  </div>
+  
+  
+  <div class="leftSidebar" style="width: 30%; height: 100%; border-top: 5px; text-align: left;float: left;">
+  <br>
+  	<div class="btn-group-vertical">
+  		 <button class="btn btn-primary" ng-click="newsFeed()">News Feed</button>
+  		 <h4> Groups </h4>
+ 		 <% for(var i=0;i < allGroups.length;i++) { %>
+ 		 <button class="btn btn-primary" id="<%= allGroups[i].groupId %>" ng-click="group($event)"><%= allGroups[i].groupName %></button>
+  		 <%	}%>
+  		 <button class="btn btn-primary" id="" ng-click="createGroup()">Create a Group</button><br>
+	</div>
+  </div> 
+  
+  <div class="mainSection" style="width: 70%; height: 100%; text-align: left;float: left;">
+  
+   <div id="mainArea"  data-position="top">
+       <div id="postStatusBox" ng-show="postsBoxShow">
+           <textarea rows="5" cols="50" class='animated' name="postBox" ng-model="myPost" placeholder="Whats on your mind?"></textarea><br>
+           <button class="btn btn-primary" ng-click="post()">Post</button><br><br>
+           <table class="table table-hover">
+     	  <tbody>
+       		<tr ng-repeat="posts in allposts" ng-show="postsShow">
+  	  			<td>{{posts.postData}}</td>
+       		</tr>
+     	  </tbody>
+   		</table>
+       </div>
+   </div>
+   
+    <div ng-show="groupMembersShow">
+    	<table class="table table-hover">
+     	  <tbody>
+       		<tr ng-repeat="member in members">
+  	  			<td>{{member.firstName}}</td>
+  	  			<td><button class="btn btn-primary" ng-click="removeMember(member.groupId, member.emailId)">Remove</button></td>
+       		</tr>
+     	  </tbody>
+   		</table>
+   		<button class="btn btn-primary" ng-click="deleteGroup(members[0].groupId)">Delete Group</button>
+    </div>
+    
+    <div ng-show="newsFeedShow">
+    	<h3> news Feed </h3>
+    	<table class="table table-hover">
+     	  <tbody>
+       		<tr ng-repeat="nFeed in allNewsFeed">
+  	  			<td>{{nFeed.firstName}} : {{nFeed.news}}</td>
+       		</tr>
+     	  </tbody>
+   		</table>
+    </div>
+    	   
+  </div>
+</div>
+
+<script src=https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js></script>
+<script src ="/controller/landingpageController.js"></script>
+
+</body>
+</html>

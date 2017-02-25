@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+ <title>Friends</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+ <body>
+ <div class="container-fluid" ng-controller="AppCtrl">
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><h2>Facebook</h2></a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="/about">About</a></li>
+        <li class="active"><a href="/friends">Friends</a></li>
+        <li><a href="/interests">Interest</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <p></p>
+  <div class="row">
+    <div class="col-sm-12" style="border-top: 2px;background-color:lavender;"><span><h3>Friends</h3></span></button></div>  <!-- Name of page should be here -->
+  </div>
+  
+  <div class="leftSidebar" style="width: 30%; height: 100%; border-top: 5px; text-align: left;float: left;">
+  	<div class="btn-group-vertical">
+	  <button type="button" class="btn btn-primary" ng-click="showFriendRequests()">Friend Requests</button>
+	  <button type="button" class="btn btn-primary" ng-click="findFriends()">Find Friends</button>
+	</div>
+  </div>
+  
+  
+  <div class="mainSection" style="width: 70%; height: 100%; text-align: left;float: left;">
+	<div ng-show="showFriends">  
+	  	<% for(var i=0;i < allFriends.length;i++) { %>  
+		  <table class="table table-hover">
+		    <tbody>
+		      <tr>
+		        <td> <%= allFriends[i].firstname %> </td>
+		      </tr>
+		    </tbody>
+		  </table>
+		<% }%>
+	</div>	    
+	
+	
+	<div ng-show="friendRespond">  		  <!-- Friend request response -->
+		  <table class="table table-hover">
+		    <tbody>
+		      <tr ng-repeat ="requester in allRequests">
+		        <td>{{requester.firstName}}</td>
+		        <td><button type="button" class="btn btn-primary" ng-click="confirm(requester.emailId)">Confirm</button></td>
+		        <td><button type="button" class="btn btn-default" ng-click="deleteRequest(requester.emailId)">Delete Request</button></td>
+		      </tr>
+		    </tbody>
+		  </table>
+	</div>
+	
+	<div ng-show="potentialFriends">    
+		  <table class="table table-hover">
+		    <tbody>
+		      <tr ng-repeat ="person in allPeople">
+		        <td>{{person.firstName}}</td>
+		        <td><button type="button" id="addButton" value="Add Friend" class="btn btn-primary" ng-click="addFriend(person.emailId)">Add Friend</button></td>
+		      </tr>
+		    </tbody>
+		  </table>
+	</div>
+	
+	<div>
+		
+	</div>
+	
+  </div>
+ 
+</div>
+
+<script src=https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js></script>
+<script src ="/controller/friendsController.js"></script> 
+</body>
+</html>
+

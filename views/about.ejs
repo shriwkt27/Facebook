@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+ <title>About</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+ <body>
+ <div class="container-fluid" ng-controller="AppCtrl">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><h2>Facebook</h2></a>
+    </div>
+    
+    <div>
+      <ul class="nav navbar-nav">
+        	<li><a href="/about">User</a></li>   <!-- Give User Name here -->
+        	<li class="active"><a href="/landingPage">home</a></li>
+        	<li><a href="/logout">Logout</a></li>
+      	</ul>
+    </div>
+  </div>
+</nav>
+  <p></p>
+  <div class="row">
+    <div class="col-sm-12" style="border-top: 2px;background-color:lavender;"><span><h3>About</h3></span></button></div>     <!-- Name of page shoud be here -->
+  </div>
+   <nav class="navbar navbar-default" float= "right">
+  <div>
+      	<ul class="nav navbar-nav">
+	        <li class="active"><a href="/about">About</a></li>
+	        <li><a href="/friends">Friends</a></li>
+	        <li><a href="/interests">Interest</a></li>
+        </ul>
+  </div>
+  </nav>
+  
+  <div class="leftSidebar" style="width: 30%; height: 100%; border-top: 5px; text-align: left;float: left;">
+  	<div class="btn-group-vertical">
+  <button type="button" class="btn btn-primary" ng-click="overview()">Overview</button>
+  <button type="button" class="btn btn-primary" ng-click="workAndEducation()">Work and Education</button>
+  <button type="button" class="btn btn-primary" ng-click="contactInfo()">Contact Info</button>
+  <button type="button" class="btn btn-primary" ng-click="lifeEvents()">Life Events</button>
+	</div>
+  </div> 
+ <div class="mainSection" style="width: 70%; height: 100%; text-align: left;float: left;">
+  <table class="table table-hover" ng-show="overviewShow">
+    <tbody>
+      <tr>
+        <td>Working at <%= company%></td>
+      </tr>
+      <tr>
+        <td>Studied at <%= college %></td>
+      </tr>
+      <tr>
+        <td>Lives in <%= city %> , <%= country %></td>
+      </tr>
+      <tr>
+        <td>Date of Birth <%= dob %> </td>
+      </tr>
+      <tr>
+        <td>Mobile Number <%= mobile %> </td>
+      </tr>
+    </tbody>
+  </table>
+  
+   <table class="table table-hover" ng-show="workAndEducationShow">
+    <tbody>
+      <tr>
+        <td>Working at <%= company%></td>
+      </tr>
+      <tr>
+        <td>Studied at <%= college %></td>
+      </tr>
+    </tbody>
+  </table>
+  
+   <table class="table table-hover" ng-show="contactInfoShow">
+    <tbody>
+      <tr>
+         <td>Mobile Number <%= mobile %> </td>
+      </tr>
+      <tr>
+        <td>EmailId <%= emailId %></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div ng-show="lifeEventsShow">
+  	<textarea rows="1" cols="100" class='animated' name="postBox" ng-model="lifeEvent" placeholder="Enter a Life event"></textarea><br>
+  	<input type="date" name="eventdate" ng-model="eventdate">
+ 	<button type="button" class="btn btn-primary" ng-click="addLifeEvent()">Add a Life Event</button>
+  	<table class="table table-hover">
+    <tbody>
+      <tr ng-repeat="event in allEvents">
+      	 <td>{{event.Date}}</td>	
+         <td>{{event.lifeEvent}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  
+  </div>
+ 
+
+</div>
+
+<script src=https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js></script>
+<script src ="/controller/aboutController.js"></script>
+ </body>
+</html>
+
